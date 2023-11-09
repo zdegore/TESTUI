@@ -9,7 +9,7 @@
     android:background="@color/lightblue">
 
     <RelativeLayout
-        android:background="@drawable/background_border2"
+        android:background="@color/lightblue"
         android:id="@+id/topStatusBar"
         android:layout_width="match_parent"
         android:layout_height="100sp"
@@ -17,48 +17,71 @@
 
         <TextView
             android:id="@+id/lastUpdated"
-            android:layout_width="400sp"
+            android:layout_width="425sp"
             android:layout_height="50sp"
-            android:text="Last Updated: "
-            android:textSize="30sp"
+            android:background="@drawable/background_border3"
+            android:paddingLeft="10dp"
+            android:text="Last Updated: 2023-08-28"
             android:textColor="@color/black"
-            android:paddingLeft="10dp">
-        </TextView>
+            android:textSize="30sp"></TextView>
 
         <TextView
             android:id="@+id/beaconStatus"
-            android:layout_width="400sp"
+            android:layout_width="425sp"
             android:layout_height="50sp"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="0sp"
             android:textSize="30sp"
-            android:text="Beacon Status: "
-            android:textColor="@color/black"
-            android:paddingLeft="10dp">
+            android:text="Beacon Status: NonFunctional"
+            android:textColor="@color/red"
+            android:paddingLeft="10dp"
+            android:background="@drawable/background_border3">
 
         </TextView>
 
         <TextView
-            android:id="@+id/dataStatus"
-            android:layout_width="400sp"
+            android:id="@+id/monitorStatus"
+            android:layout_width="425sp"
             android:layout_height="50sp"
             android:layout_toEndOf="@+id/lastUpdated"
-            android:text="Data Status: "
-            android:textColor="@color/black"
-            android:textSize="30sp">
+            android:text="Monitor Status: NonFunctional"
+            android:textColor="@color/red"
+            android:textSize="30sp"
+            android:paddingLeft="10dp"
+            android:background="@drawable/background_border3">
 
         </TextView>
 
         <TextView
-            android:id="@+id/dateTime"
-            android:layout_width="400sp"
+            android:id="@+id/tcCoverage"
+            android:layout_width="425sp"
             android:layout_height="50sp"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="0sp"
-            android:text="DATE/TIME"
+            android:layout_marginEnd="0dp"
+            android:text="T/C Coverage: Satisfied"
             android:textColor="@color/black"
-            android:textSize="30sp">
+            android:textSize="30sp"
+            android:paddingLeft="10dp"
+            android:background="@drawable/background_border3">
 
+        </TextView>
+        <TextView
+            android:id="@+id/empty2"
+            android:layout_width="425sp"
+            android:layout_height="50sp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:paddingLeft="10dp"
+            android:background="@drawable/background_border3">
+        </TextView>
+        <TextView
+            android:id="@+id/empty1"
+            android:layout_width="425sp"
+            android:layout_height="50sp"
+            android:layout_toEndOf="@+id/beaconStatus"
+            android:layout_alignParentBottom="true"
+            android:paddingLeft="10dp"
+            android:background="@drawable/background_border3">
         </TextView>
 
     </RelativeLayout>
@@ -78,7 +101,9 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/topStatusBar"
         android:layout_marginTop="200sp"
-        android:contentDescription=" ">
+        android:contentDescription=" "
+        android:background="@color/lightblue"
+        android:layout_marginRight="5dp">
 
 
         <com.google.android.material.tabs.TabLayout
@@ -105,8 +130,8 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/topStatusBar"
         android:layout_marginStart="300sp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/background_border1"
         android:contentDescription=" ">
 
