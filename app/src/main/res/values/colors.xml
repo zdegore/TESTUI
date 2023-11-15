@@ -10,5 +10,7 @@
     <color name="leftBar">#878787</color>
     <color name="mainBar">#878787</color>
     <color name="white">#FFFFFF</color>
+    <color name="lightblue">#BFCDF6</color>
+    <color name="red">#F44336</color>
 
 </resources>
