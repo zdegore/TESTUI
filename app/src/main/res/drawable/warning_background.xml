@@ -4,9 +4,9 @@
     <stroke android:width="3dp"
         android:color="@color/black"/>
 
-    <gradient android:startColor="@color/white"
-              android:endColor="@color/white"
-              android:angle="90" />
+    <gradient android:startColor="@color/warningred"
+        android:endColor="@color/warningred"
+        android:angle="90" />
     <corners
         android:radius="13dp" />
 
