@@ -23,7 +23,7 @@ import java.util.Calendar
 class MainActivity : AppCompatActivity(){
 
     private val handler = Handler(Looper.getMainLooper())
-    private val updateIntervalMillis: Long = 1000 // 1 second
+    private val updateIntervalMillis: Long = 60000 // 1 second
 
     private val updateRunnable = object : Runnable {
         override fun run() {

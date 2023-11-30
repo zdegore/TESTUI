@@ -103,7 +103,6 @@
 
         android:layout_width="300dp"
         android:layout_height="match_parent"
-
         android:layout_below="@+id/topStatusBar"
         android:layout_marginTop="190sp"
         android:layout_marginLeft="10sp"
