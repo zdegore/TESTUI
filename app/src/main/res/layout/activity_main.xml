@@ -4,138 +4,141 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/lightblue"
     android:fitsSystemWindows="true"
-    tools:context=".MainActivity"
-    android:background="@color/lightblue">
+    tools:context=".MainActivity">
 
     <RelativeLayout
-        android:background="@color/lightblue"
         android:id="@+id/topStatusBar"
         android:layout_width="match_parent"
         android:layout_height="100sp"
-        >
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:background="@color/lightblue">
 
         <TextView
             android:id="@+id/lastUpdated"
-            android:layout_width="425sp"
-            android:layout_height="50sp"
+            android:layout_width="420sp"
+            android:layout_height="45sp"
             android:background="@drawable/background_border3"
             android:paddingLeft="10dp"
             android:text="Last Updated: 2023-08-28"
             android:textColor="@color/black"
-            android:textSize="30sp"></TextView>
+            android:textSize="25sp"></TextView>
 
         <TextView
             android:id="@+id/beaconStatus"
-            android:layout_width="425sp"
-            android:layout_height="50sp"
+            android:layout_width="420sp"
+            android:layout_height="45sp"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="0sp"
-            android:textSize="30sp"
-            android:text="Beacon Status: NonFunctional"
-            android:textColor="@color/red"
+            android:background="@drawable/warning_background"
             android:paddingLeft="10dp"
-            android:background="@drawable/background_border3">
+            android:text="BEACON Status: NonFunctional"
+            android:textColor="@color/black"
+            android:textSize="25sp">
 
         </TextView>
 
         <TextView
             android:id="@+id/monitorStatus"
-            android:layout_width="425sp"
-            android:layout_height="50sp"
+            android:layout_width="420sp"
+            android:layout_height="45sp"
             android:layout_toEndOf="@+id/lastUpdated"
-            android:text="Monitor Status: NonFunctional"
-            android:textColor="@color/red"
-            android:textSize="30sp"
+            android:background="@drawable/warning_background"
             android:paddingLeft="10dp"
-            android:background="@drawable/background_border3">
+            android:text="Monitor Status: NonFunctional"
+            android:textColor="@color/black"
+            android:textSize="25sp">
 
         </TextView>
 
         <TextView
             android:id="@+id/tcCoverage"
-            android:layout_width="425sp"
-            android:layout_height="50sp"
+            android:layout_width="420sp"
+            android:layout_height="45sp"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="0dp"
+            android:background="@drawable/background_border3"
+            android:paddingLeft="10dp"
             android:text="T/C Coverage: Satisfied"
             android:textColor="@color/black"
-            android:textSize="30sp"
-            android:paddingLeft="10dp"
-            android:background="@drawable/background_border3">
+            android:textSize="25sp">
 
         </TextView>
+
         <TextView
             android:id="@+id/empty2"
-            android:layout_width="425sp"
-            android:layout_height="50sp"
+            android:layout_width="420sp"
+            android:layout_height="45sp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:paddingLeft="10dp"
-            android:background="@drawable/background_border3">
-        </TextView>
+            android:background="@drawable/background_border3"
+            android:paddingLeft="10dp"></TextView>
+
         <TextView
             android:id="@+id/empty1"
-            android:layout_width="425sp"
-            android:layout_height="50sp"
-            android:layout_toEndOf="@+id/beaconStatus"
+            android:layout_width="420sp"
+            android:layout_height="45sp"
             android:layout_alignParentBottom="true"
-            android:paddingLeft="10dp"
-            android:background="@drawable/background_border3">
-        </TextView>
+            android:layout_toEndOf="@+id/beaconStatus"
+            android:background="@drawable/background_border3"
+            android:paddingLeft="10dp"></TextView>
 
     </RelativeLayout>
 
     <TextView
         android:id="@+id/logo"
-        android:layout_width="290sp"
+        android:layout_width="320sp"
         android:layout_height="200sp"
         android:layout_below="@+id/topStatusBar"
         android:background="@mipmap/beaconlogo2">
 
     </TextView>
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/AppBarLayout"
-        android:layout_width="300sp"
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+
+        android:layout_width="300dp"
         android:layout_height="match_parent"
+
         android:layout_below="@+id/topStatusBar"
-        android:layout_marginTop="200sp"
+        android:layout_marginTop="190sp"
+        android:layout_marginLeft="10sp"
+        android:layout_marginBottom="10sp"
+        android:layout_marginRight="0sp"
+        android:layout_gravity="top"
+        android:background="@drawable/background_border1"
         android:contentDescription=" "
-        android:background="@color/lightblue"
-        android:layout_marginRight="5dp">
+        app:tabIndicatorHeight="4dp"
+        app:tabIndicatorFullWidth="false"
+        app:tabInlineLabel="true"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@color/purple_700"
+        app:tabTextAppearance="@style/customTabStyle"
+        app:tabTextColor="@color/black">
+
+    </com.google.android.material.tabs.TabLayout>
 
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabs"
-            android:layout_width="300sp"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/topStatusBar"
-            android:background="@drawable/background_border1"
-            app:tabGravity="center"
-            app:tabInlineLabel="true"
-            app:tabMode="fixed"
-            app:tabTextAppearance="@style/customTabStyle"
-            app:tabTextColor="@color/black"
-            android:contentDescription=" ">
-
-        </com.google.android.material.tabs.TabLayout>
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewPager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager2"
+        android:layout_width="957dp"
+        android:layout_height="670dp"
         android:layout_below="@+id/topStatusBar"
-        android:layout_marginStart="300sp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_toEndOf="@+id/tabLayout"
         android:background="@drawable/background_border1"
         android:contentDescription=" ">
 
-    </androidx.viewpager.widget.ViewPager>
+    </androidx.viewpager2.widget.ViewPager2>
 
 
 </RelativeLayout>

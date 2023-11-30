@@ -3,15 +3,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.Monitor1Fragment">
-
+    tools:context=".fragments.Monitor1Fragment"
+    android:background="@drawable/background_border1">
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TextView
+        android:id="@+id/TextArea"
+        android:layout_width="300sp"
+        android:layout_height="match_parent"
+        >
+
+
+        <Spinner
+            android:id="@+id/spinner"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="asdasdasd" />
+            android:layout_height="50sp"
+            android:spinnerMode="dropdown"
+            android:background="@drawable/background_border1"/>
+
+        <Spinner
+            android:id="@+id/spinner2"
+            android:layout_below="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:layout_marginTop="135dp"
+            android:spinnerMode="dropdown"
+            android:background="@drawable/background_border1"/>
+
+        <Spinner
+            android:id="@+id/spinner3"
+            android:layout_below="@+id/spinner2"
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:layout_marginTop="135dp"
+            android:spinnerMode="dropdown"
+            android:background="@drawable/background_border1"/>
+
+        <Spinner
+            android:id="@+id/spinner4"
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:layout_below="@+id/spinner3"
+            android:layout_marginTop="135dp"
+            android:spinnerMode="dropdown"
+            android:background="@drawable/background_border1"/>
+
+
     </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/GraphArea"
+        android:layout_width="975sp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="300sp">
+
+    </RelativeLayout>
+
 </FrameLayout>

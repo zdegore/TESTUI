@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,15 +8,70 @@
     android:layout_height="match_parent"
     tools:context=".fragments.FuelDataFragment">
 
-    <!--line graph view where we will
+    <RelativeLayout
+        android:id="@+id/TextArea2"
+        android:layout_width="300sp"
+        android:layout_height="match_parent"
+        >
+
+
+        <Spinner
+            android:id="@+id/spinner21"
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:spinnerMode="dropdown"
+            android:background="@drawable/background_border1"/>
+
+        <Spinner
+            android:id="@+id/spinner22"
+            android:layout_below="@+id/spinner21"
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:layout_marginTop="135dp"
+            android:spinnerMode="dropdown"
+            android:background="@drawable/background_border1"/>
+
+        <Spinner
+            android:id="@+id/spinner23"
+            android:layout_below="@+id/spinner22"
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:layout_marginTop="135dp"
+            android:spinnerMode="dropdown"
+            android:background="@drawable/background_border1"/>
+
+        <Spinner
+            android:id="@+id/spinner24"
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:layout_below="@+id/spinner23"
+            android:layout_marginTop="135dp"
+            android:spinnerMode="dropdown"
+            android:background="@drawable/background_border1"/>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/GraphArea22"
+        android:layout_width="975dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="300sp">
+
+        <!--line graph view where we will
         be displaying our data-->
-    <com.jjoe64.graphview.GraphView
-        android:id="@+id/idGraphView1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="0dp"
-        android:text="this is a graph" />
+        <com.jjoe64.graphview.GraphView
+            android:id="@+id/idGraphView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="0dp"
+            android:text="this is a graph" />
+
+
+    </RelativeLayout>
+
+
 
 </RelativeLayout>
 

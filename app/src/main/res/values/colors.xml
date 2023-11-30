@@ -12,5 +12,9 @@
     <color name="white">#FFFFFF</color>
     <color name="lightblue">#BFCDF6</color>
     <color name="red">#F44336</color>
+    <color name="moderngray">#232323</color>
+    <color name="warningred">#C87070</color>
+
+
 
 </resources>
