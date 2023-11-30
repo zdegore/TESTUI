@@ -4,8 +4,10 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Looper
 import android.os.Handler
+import android.widget.ArrayAdapter
 
 import android.widget.AutoCompleteTextView
+import android.widget.Spinner
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +18,10 @@ import com.example.testui.fragments.FuelDataFragment
 import com.example.testui.fragments.adapters.viewPagerAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
+import org.xmlpull.v1.XmlPullParser
+import org.xmlpull.v1.XmlPullParserException
+import org.xmlpull.v1.XmlPullParserFactory
+import java.io.IOException
 import java.time.LocalDate
 import java.util.Calendar
 
@@ -33,6 +39,19 @@ class MainActivity : AppCompatActivity(){
 
             // Schedule the next update
             handler.postDelayed(this, updateIntervalMillis)
+
+            // Core Power
+            val corePowerVal = parseXML("CMSUM2", "value") // 100
+            val corePowerUnit = parseXML("CMSUM2", "unit") // %
+
+            //
+
+            // Get reference to your fragment
+            val fragment = supportFragmentManager.findFragmentById(R.id.monitor1) as Monitor1Fragment
+
+            // Update data in your fragment
+            fragment.updateData(corePowerVal, corePowerUnit)
+
         }
     }
 
@@ -130,4 +149,78 @@ class MainActivity : AppCompatActivity(){
 
         })
     }
+
+    private fun parseXML(item: String, attribute: String) : String {
+        val parserFactory: XmlPullParserFactory
+        try {
+            parserFactory = XmlPullParserFactory.newInstance()
+            val parser = parserFactory.newPullParser()
+            val `is` = assets.open("monitor.xml")
+            parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false)
+            parser.setInput(`is`, null)
+            return processParsing(parser, item, attribute)
+        } catch (e: XmlPullParserException) {
+        } catch (e: IOException) {
+        }
+        return ""
+    }
+
+    @Throws(XmlPullParserException::class, IOException::class)
+    private fun processParsing(parser: XmlPullParser, item: String, value: String) : String{
+        var eventType = parser.eventType
+        var currentItem: Data? = null
+        var isItem = false
+        while (eventType != XmlPullParser.END_DOCUMENT) {
+            var temp: String? = null
+            when (eventType) {
+                XmlPullParser.START_TAG -> {
+                    temp = parser.name
+                    if (item == temp) {
+                        currentItem = Data()
+                        isItem = true
+                    } else if (currentItem != null && isItem) {
+                        if ("value" == temp) {
+                            currentItem.value = parser.nextText()
+                        } else if ("description" == temp) {
+                            currentItem.description = parser.nextText()
+                        } else if ("quality" == temp) {
+                            currentItem.quality = parser.nextText()
+                        } else if ("unit" == temp) {
+                            currentItem.unit = parser.nextText()
+                        } else if ("type" == temp) {
+                            currentItem.type = parser.nextText()
+                            isItem = false
+                        }
+                    }
+                }
+            }
+            eventType = parser.next()
+        }
+        return printData(currentItem, value)
+    }
+
+    private fun printData(currentItem: Data?, value: String) : String{
+        val builder = StringBuilder()
+        when (value) {
+            "value" -> if (currentItem != null) {
+                builder.append(currentItem.value)
+            }
+            "description" -> if (currentItem != null) {
+                builder.append(currentItem.description)
+            }
+            "quality" -> if (currentItem != null) {
+                builder.append(currentItem.quality)
+            }
+            "unit" -> if (currentItem != null) {
+                builder.append(currentItem.unit)
+            }
+            "type" -> if (currentItem != null) {
+                builder.append(currentItem.type)
+            }
+        }
+        return builder.toString()
+    }
 }
+
+
+

@@ -13,13 +13,12 @@ import com.example.testui.R
 import java.time.LocalDate
 
 class Monitor1Fragment : Fragment(){
-
+    private lateinit var powerData : String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
 
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,7 +33,7 @@ class Monitor1Fragment : Fragment(){
         val spinner: Spinner = view.findViewById(R.id.spinner)
 
         //set items inside of drop down
-        val items = arrayOf("CorePower & Burnup", "Core Power: ", "Average Tin:", "Soluble Boron:", "Cycle Burnup:", "Max PIn Burnup:")
+        val items = arrayOf(powerData)
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, items)
 
         //connections
@@ -58,6 +57,11 @@ class Monitor1Fragment : Fragment(){
 
         return view
     }
+
+    fun updateData(corePowerVal: String, corePowerUnit: String) {
+        powerData = corePowerVal + corePowerUnit
+    }
+
 
 
 }
