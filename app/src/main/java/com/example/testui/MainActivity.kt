@@ -2,6 +2,9 @@ package com.example.testui
 
 import android.os.Build
 import android.os.Bundle
+import android.os.Looper
+import android.os.Handler
+
 import android.widget.AutoCompleteTextView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
@@ -19,6 +22,19 @@ import java.util.Calendar
 
 class MainActivity : AppCompatActivity(){
 
+    private val handler = Handler(Looper.getMainLooper())
+    private val updateIntervalMillis: Long = 1000 // 1 second
+
+    private val updateRunnable = object : Runnable {
+        override fun run() {
+            // Update your view here
+            updateTime()
+            //updateMonitor()
+
+            // Schedule the next update
+            handler.postDelayed(this, updateIntervalMillis)
+        }
+    }
 
     private lateinit var viewPager2: ViewPager2
     private lateinit var tabLayout: TabLayout
@@ -27,47 +43,48 @@ class MainActivity : AppCompatActivity(){
     private lateinit var beaconBox: TextView
     private lateinit var icBox: TextView
     private lateinit var adapter: viewPagerAdapter
+    fun updateTime() {
+        //variable for formatting time
+        val time = Calendar.getInstance()
+        val y = time.get(Calendar.YEAR)
+        val m = time.get(Calendar.MONTH)
+        val d = time.get(Calendar.DAY_OF_MONTH)
+        val h = time.get(Calendar.HOUR_OF_DAY)
+        val mm = time.get(Calendar.MINUTE)
 
+        //format and set text
+        val format_time =
+            "Last Updated: " + y.toString() + "-" + m.toString() + "-" + d.toString() + " " + h.toString() + ":" + mm.toString()
+        updatedBox = findViewById(R.id.lastUpdated)
+        updatedBox.setText(format_time)
+
+    }
+
+
+    fun updateMonitor()
+    {
+        val status = 0
+
+        if (status == 0)
+        {
+            monitorBox.setBackgroundColor(getResources().getColor(R.color.warningred))
+            monitorBox.setText("Monitor Status: NonFunctional!")
+
+        }
+
+        else
+        {
+            monitorBox.setBackgroundColor(getResources().getColor(R.color.white))
+            monitorBox.setText("Monitor Status: Functional")
+        }
+    }
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-         fun updateTime(){
-            //variable for formatting time
-            val time = Calendar.getInstance()
-            val y = time.get(Calendar.YEAR)
-            val m = time.get(Calendar.MONTH)
-            val d = time.get(Calendar.DAY_OF_MONTH)
-            val h = time.get(Calendar.HOUR_OF_DAY)
-            val mm = time.get(Calendar.MINUTE)
-
-            //format and set text
-            val format_time = "Last Updated: " + y.toString() + "-" + m.toString() + "-" + d.toString() + " " + h.toString() + ":" + mm.toString()
-            updatedBox = findViewById(R.id.lastUpdated)
-            updatedBox.setText(format_time)
-
-        }
-
-        fun updateMonitor()
-        {
-            val status = 0
-
-            if (status == 0)
-            {
-                monitorBox.setBackgroundColor(getResources().getColor(R.color.warningred))
-                monitorBox.setText("Monitor Status: NonFunctional!")
-
-            }
-
-            else
-            {
-                monitorBox.setBackgroundColor(getResources().getColor(R.color.white))
-                monitorBox.setText("Monitor Status: Functional")
-            }
-        }
-
+        //handler for updating text boxes
+        handler.postDelayed(updateRunnable, updateIntervalMillis)
 
         //find the tablayout and viewpager
         tabLayout = findViewById(R.id.tabLayout)
